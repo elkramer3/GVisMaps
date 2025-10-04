@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 
 def custom_colormap(n_colors, min_color, mid_color, max_color):
-    """Create a custom colormap similar to MATLAB's approach"""
     colors = [min_color, mid_color, max_color]
     n_bins = n_colors
     cmap = LinearSegmentedColormap.from_list('custom', colors, N=n_bins)
@@ -211,7 +210,6 @@ def show_map(f=None, ax=None, query_az=None, query_in=None, query_snr=None, para
                                       rcount=50, ccount=50)
             
             # Apply similar grid and labeling logic as above
-            # (Abbreviated for space - would follow same pattern as 2D case)
             
             ax_sub.view_init(elev=90, azim=180)
             ax_sub.grid(False)
@@ -233,7 +231,7 @@ def show_map(f=None, ax=None, query_az=None, query_in=None, query_snr=None, para
     return f, ax
 
 # %% Load relevant visibility data
-vm_folder = r"C:\Users\evank\Documents\repos\GVisMaps\data\1_1_genVM"
+vm_folder = r"data\1_1_genVM"
 
 # Load CSV files using numpy and replace NaN values with 0
 num_vm_map = np.genfromtxt(f"{vm_folder}/vm/stoVM.csv", delimiter=',')
@@ -247,9 +245,7 @@ num_inc_map = np.nan_to_num(num_inc_map, nan=0.0)
 
 # %% Example usage (equivalent to MATLAB call)
 def plot_visibility_map(est_map, az_map, inc_map, title='Variance-Adjusted Stochastic VM map'):
-    """
-    Equivalent to the MATLAB plotting call (no thresholding applied)
-    """
+
     # Replace any NaN values with 0
     est_map_clean = np.nan_to_num(est_map, nan=0.0)
     
@@ -259,11 +255,8 @@ def plot_visibility_map(est_map, az_map, inc_map, title='Variance-Adjusted Stoch
     
     return map_f, map_ax
 
-# %% Example of how to call it (equivalent to your MATLAB code)
 if __name__ == "__main__":
 
     map_f, map_ax = plot_visibility_map(num_vm_map, num_az_map, num_inc_map, 
                                        'Variance-Adjusted Stochastic VM map')
     plt.show()
-
-    pass

@@ -1,11 +1,10 @@
 import numpy as np
 import rasterio
 import matplotlib.pyplot as plt
-from scipy.interpolate import griddata
 
 def rotate_surface(x, y, scores, rotation_angle):
     """
-    Optimized Python equivalent of the MATLAB rotate_surface function
+    Rotate the visibility scores based on the given rotation angle.
     
     Inputs:
     x, y: n x n matrices of Cartesian coordinates
@@ -34,7 +33,6 @@ def rotate_surface(x, y, scores, rotation_angle):
     from scipy.interpolate import RegularGridInterpolator
     
     # Create regular grid coordinates (assuming x, y are regular grids)
-    rows, cols = scores.shape
     x_coords = x[0, :]  # First row (assuming regular grid)
     y_coords = y[:, 0]  # First column (assuming regular grid)
     
@@ -54,24 +52,22 @@ def rotate_surface(x, y, scores, rotation_angle):
     return rotated_scores
 
 # %% Load relevant visibility data
-vm_folder = r"C:\Users\evank\Documents\repos\GVisMaps\data\4_1_genVM"
+vm_folder = r"data\4_1_genVM"
 
 # Load CSV files using numpy
 num_vm_map = np.genfromtxt(f"{vm_folder}/vm/stoVM.csv", delimiter=',')
 num_az_map = np.genfromtxt(f"{vm_folder}/vm/az.csv", delimiter=',')
 num_inc_map = np.genfromtxt(f"{vm_folder}/vm/inc.csv", delimiter=',')
-# num_map_stats not available as CSV - commenting out for now
 
-vm_folder = r"C:\Users\evank\Documents\repos\GVisMaps\data\nyc_dsm"
+vm_folder = r"data\nyc_dsm"
 
 # Load CSV files using numpy
 dsm_vm_map = np.genfromtxt(f"{vm_folder}/vm/stoVM.csv", delimiter=',')
 dsm_az_map = np.genfromtxt(f"{vm_folder}/vm/az.csv", delimiter=',')
 dsm_inc_map = np.genfromtxt(f"{vm_folder}/vm/inc.csv", delimiter=',')
-# dsm_map_stats not available as CSV - commenting out for now
 
 # %% Load GeoTIFF (road network raster)
-pth = r"C:\Users\evank\Documents\repos\GVisMaps\data\nyc_dsm\road_network_rasterized_clip.tif"
+pth = r"data\nyc_dsm\road_network_rasterized_clip.tif"
 
 with rasterio.open(pth) as src:
     roadData = src.read(1)  # first band
