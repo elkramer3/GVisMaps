@@ -1,10 +1,11 @@
 # GVisMaps
-Dataset of three sets of generalizable visibility maps for planning SAR observations in challenging terrain. Code for visualizing and processing generalizable visibility map data is included.
+Three sets of generalizable synthetic aperture radar (SAR) visibility maps for planning SAR observations in challenging terrain. Code for visualizing and processing generalizable visibility map data is included.
 <img width="1700" height="1254" alt="nyc_capella" src="https://github.com/user-attachments/assets/4f2c9c47-09d3-4fbb-9c41-5c3bb227cda3" />
+Capella Space Synthetic Aperture Radar (SAR) Open Dataset was accessed on 10/4/2025 from https://registry.opendata.aws/capella_opendata.
 
-Generalizable visibility map data is stored in the folder "data." Use the script "visualize.py" to visualize the visibility map data and the script estimate_vis.py to estimate the visibility of a user-defined region of interest shape file.
+Generalizable visibility map data is stored in the folder "data." Use the script "visualize.py" to visualize the visibility map data and the script estimate_vis.py to estimate the visibility of a user-defined region of interest - specifically the road network of Manhattan shown in the image above.
 
-If using this data or code in your own work, please reference the papers where the first description of SAR visibility maps were described:
+If using this data or code in your own work, please reference the papers where the first description of SAR visibility maps were described and generalizable visibility maps were presented:
 
 E. L. Kramer and D. W. Miller, "Visibility Metric for Planning SAR Observations in Challenging Terrain," in IEEE Transactions on Geoscience and Remote Sensing, vol. 62, pp. 1-14, 2024, Art no. 5226114, doi: 10.1109/TGRS.2024.3487050.
 
